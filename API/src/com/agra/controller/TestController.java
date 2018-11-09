@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,18 +25,15 @@ import com.agra.entity.*;
 @CrossOrigin(origins = "http://localhost:4200")
 public class TestController {
 	
+	@Autowired
+	SessionFactory sessionFactory;
+	
+	@Transactional
 	@GetMapping("/home")
-	public ArrayList<Employee> test(){
-		ArrayList<Employee> list = new ArrayList<Employee>();
-		list.add(new Employee(1,"omar",21));	
-		list.add(new Employee(2,"mohammed",26));
-		list.add(new Employee(3,"mehdi",18));
-		list.add(new Employee(4,"amine",42));
-		return list;
+	public String test(){
+		Session session = sessionFactory.getCurrentSession();
+		User user = session.get(User.class, "admin");
+		return user.toString();
 	}
 	
-	@PostMapping("/post")
-	public void postTest(@RequestBody Test test){
-		System.out.println(test.getName());
-	}
 }
