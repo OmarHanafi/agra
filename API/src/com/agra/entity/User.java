@@ -20,6 +20,13 @@ public class User {
 	private int type;
 	
 	public User() {	}
+	
+
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 	public User(String username, String password, int type) {
 		super();
