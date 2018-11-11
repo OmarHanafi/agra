@@ -70,7 +70,7 @@ public class TestController {
 			System.out.println("incorrect password !");
 			return false;
 		}
-=======
+		
 	UserService userService;
 	
 	@PostMapping("/home")
@@ -79,7 +79,6 @@ public class TestController {
 		if(userService.login(user))
 			result = user;
 		return result;
->>>>>>> 6867cb2e564f57e8da679659489d32bda0830c54
 	}
 	
 	
