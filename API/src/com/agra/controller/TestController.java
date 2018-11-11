@@ -32,13 +32,9 @@ import com.agra.service.UserService;
 public class TestController {
 	
 	@Autowired
-<<<<<<< HEAD
 	private SessionFactory sessionFactory;
 	@Autowired
 	private UserService userService;
-	
-	
-	
 	
 	@GetMapping("/formProcessing")
 	public ArrayList<User> test(
@@ -56,37 +52,13 @@ public class TestController {
 		return null;
 	}
 	
-	
-	
-	@PostMapping("/formProcessing")
-	public boolean log(@RequestBody() User user)
-	{
-		if(userService.login(user))
-		{
-			System.out.println("connected ! ");
-			return true;
-		}
-		else{
-			System.out.println("incorrect password !");
-			return false;
-		}
-=======
-	UserService userService;
-	
 	@PostMapping("/home")
 	public User test(@RequestBody User user){
 		User result = null;
 		if(userService.login(user))
 			result = user;
 		return result;
->>>>>>> 6867cb2e564f57e8da679659489d32bda0830c54
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
