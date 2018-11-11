@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
 		boolean result = false;
 		User userresult = userDAO.getUser(user.getUsername());
 		if(userresult != null){
-			if(userresult.getPassword().equals(user.getPassword()))
+			if(userresult.getPassword().equals(user.getPassword())) //ss
 				result = true;
 		}
 		return result;
