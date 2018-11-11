@@ -21,6 +21,16 @@ public class User {
 	
 	public User() {	}
 	
+<<<<<<< HEAD
+	public User(String username,String password)
+	{
+		super();
+		this.username = username;
+		this.password = password;
+		this.type = -1;
+	}
+	
+=======
 
 	public User(String username, String password) {
 		super();
@@ -28,6 +38,7 @@ public class User {
 		this.password = password;
 	}
 
+>>>>>>> 6867cb2e564f57e8da679659489d32bda0830c54
 	public User(String username, String password, int type) {
 		super();
 		this.username = username;

@@ -8,6 +8,21 @@ import { User } from './shared/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+<<<<<<< HEAD
+  title = 'AngularProject';
+
+  
+  constructor() { }
+  
+  ngOnInit() {
+     
+  }
+
+
+
+
+
+=======
 
   loginError : boolean = false;
 
@@ -29,5 +44,6 @@ export class AppComponent {
       }
     });
   }
+>>>>>>> 6867cb2e564f57e8da679659489d32bda0830c54
 
 }
