@@ -8,5 +8,4 @@ public interface UserDAO {
 
 	public User getUser(String username);
 
-	public ArrayList<User> getUsers();
 }
