@@ -3,9 +3,11 @@ package com.agra.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,12 +38,45 @@ public class TestController {
 	
 	
 	
-	@GetMapping("/home")
-	public User test(@RequestParam("username") String username,Model theModel){
-		
-		System.out.println(username);
-		User user = userService.getUser(username);
-		return user;
+	
+	@GetMapping("/formProcessing")
+	public ArrayList<User> test(
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			Model theModel){
+		User user = new User(username,password);
+		if(userService.login(user))
+		{
+			System.out.println("connected ! ");
+		}
+		else{
+			System.out.println("incorrect password !");
+		}
+		return null;
 	}
+	
+	
+	
+	@PostMapping("/formProcessing")
+	public boolean log(@RequestBody() User user)
+	{
+		if(userService.login(user))
+		{
+			System.out.println("connected ! ");
+			return true;
+		}
+		else{
+			System.out.println("incorrect password !");
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
