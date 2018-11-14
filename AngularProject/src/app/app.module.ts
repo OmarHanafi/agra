@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { ClientModule } from './client/client.module';
+import { LoginModule } from './login/login.module';
+import { SharedModule } from './shared/shared.module';
+
+let Modules = [ClientModule, LoginModule, SharedModule];
 
 @NgModule({
   declarations: [
@@ -14,9 +16,7 @@ import { ClientModule } from './client/client.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ClientModule
+    Modules
   ],
   providers: [],
   bootstrap: [AppComponent]

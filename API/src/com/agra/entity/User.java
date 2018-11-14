@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+
 @Entity()
 @Table(name="user")
 public class User {
@@ -23,13 +25,11 @@ public class User {
 	
 	public User(String username,String password)
 	{
-		super();
 		this.username = username;
 		this.password = password;
 	}
 	
 	public User(String username, String password, int type) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.type = type;

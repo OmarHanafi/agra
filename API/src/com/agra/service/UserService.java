@@ -4,6 +4,6 @@ import com.agra.entity.User;
 
 public interface UserService {
 	
-	public boolean login(User user);
+	public int login(User user);
 	
 }

@@ -18,14 +18,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	@Override
-	public boolean login(User user) {
-		boolean result = false;
+	public int login(User user) {
+		int type = -1;
 		User userresult = userDAO.getUser(user.getUsername());
 		if(userresult != null){
-			if(userresult.getPassword().equals(user.getPassword()))
-				result = true;
+			if(userresult.getPassword().equals(user.getPassword())){
+				type = userresult.getType();
+			}	
 		}
-		return result;
+		return type;
 	}
 
 }

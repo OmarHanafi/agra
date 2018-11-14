@@ -12,9 +12,11 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,42 +26,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import com.agra.entity.*;
 import com.agra.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class TestController {
+public class LoginController {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/formProcessing")
-	public ArrayList<User> test(
-			@RequestParam("username") String username,
-			@RequestParam("password") String password,
-			Model theModel){
-		User user = new User(username,password);
-		if(userService.login(user))
-		{
-			System.out.println("connected ! ");
-		}
-		else{
-			System.out.println("incorrect password !");
-		}
-		return null;
-	}
-	
-	@PostMapping("/home")
-	public User test(@RequestBody User user){
+	@PostMapping("/loginProcess")
+	public User loginProcess(@RequestBody User user){
 		User result = null;
-		if(userService.login(user))
+		int type = userService.login(user);
+		if(type != -1){
+			user.setType(type);
 			result = user;
+		}
 		return result;
-	}
-	
-	
+	}	
 	
 }

@@ -1,0 +1,21 @@
+<div class="container">
+		<div class="login-form">
+			<div class="main-div">
+	    		<div class="panel">
+			<img style="width: 125px" src="assets/img/logoagra.png"/>
+			<p>Sign in</p>
+	   			</div>
+           	<form #loginForm="ngForm" (ngSubmit)="loginProcess(loginForm)">
+	        		<div class="form-group">
+                  <input type="text" name="username" ngModel class="form-control" required placeholder="Username"/>
+	       			</div>
+	        		<div class="form-group">
+	            		<input type="password" name="password" ngModel class="form-control" required placeholder="Password"/>
+              </div>
+              <p *ngIf="loginError" class="loginError">Invalid credentials</p>
+              <br/>
+		        	<button type="submit" class="btn btn-primary">Login</button>
+		    	</form>
+		    </div>
+		</div>
+</div>
