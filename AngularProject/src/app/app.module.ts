@@ -3,25 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientModule } from './client/client.module';
-import { LoginModule } from './login/login.module';
-import { SharedModule } from './shared/shared.module';
-
-let Modules = [ClientModule, LoginModule, SharedModule];
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    Modules
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-
-export class AppModule {
-
- }
+export class AppModule { }
