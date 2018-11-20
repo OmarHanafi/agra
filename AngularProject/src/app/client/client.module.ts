@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ClientHomeComponent } from './pages/clienthome/clienthome.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { ClientNavbarComponent } from './components/clientnavbar/clientnavbar.component';
 import { ClientProductComponent } from './pages/clientproduct/clientproduct.component';
 import { ClientFooterComponent } from './components/clientfooter/clientfooter.component';
+import { SharedModule } from '../shared/shared.module';
 
 let clientPages = [ClientHomeComponent, ClientProductComponent];
 let clientComponents = [ClientNavbarComponent, ClientFooterComponent];
@@ -16,9 +14,7 @@ let clientComponents = [ClientNavbarComponent, ClientFooterComponent];
     clientComponents
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
+    SharedModule
   ]
 })
 export class ClientModule { }

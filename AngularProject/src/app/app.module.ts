@@ -7,16 +7,16 @@ import { ClientModule } from './client/client.module';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 
-let Modules = [ClientModule, LoginModule, SharedModule];
+let appModules = [ClientModule, LoginModule, SharedModule];
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Modules
+    appModules
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -24,4 +24,4 @@ let Modules = [ClientModule, LoginModule, SharedModule];
 
 export class AppModule {
 
- }
+}

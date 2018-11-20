@@ -7,17 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ClientNavbarComponent implements OnInit {
 
-  @Input()
-  activeNavbarIdentifier : String;
-
   constructor() { }
-
-  isActive(navbarIdentifier) : String {
-    let result : String = "";
-    if(navbarIdentifier == this.activeNavbarIdentifier)
-      result = "active";
-    return result;
-  }
 
   ngOnInit() {
   }

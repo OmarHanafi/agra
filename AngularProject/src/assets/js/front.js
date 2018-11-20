@@ -1,49 +1,18 @@
-if ($.cookie("theme_csspath")) {
-    $('link#theme-stylesheet').attr("href", $.cookie("theme_csspath"));
-}
 
-$(function() {
-
-    animations();
+function jsInit(){
+	animations();
     productDetailGallery(4000);
     carousels();
-    utils();
-    demo();
-});
-
-
-$(window).load(function() {
-    $(this).alignElementsSameHeight();
-});
+	utils();
+	alignElementsSameHeight();
+}
 
 $(window).resize(function() {
     setTimeout(function() {
-	$(this).alignElementsSameHeight();
+	alignElementsSameHeight();
     }, 150);
 });
 
-/* for demo purpose only - can be deleted */
-
-function demo() {
-
-    if ($.cookie("theme_csspath")) {
-	$('link#theme-stylesheet').attr("href", $.cookie("theme_csspath"));
-    }
-
-    $("#colour").change(function() {
-
-	if ($(this).val() !== '') {
-
-	    var theme_csspath = 'css/style.' + $(this).val() + '.css';
-
-	    $('link#theme-stylesheet').attr("href", theme_csspath);
-
-	    $.cookie("theme_csspath", theme_csspath, {expires: 365, path: '/'});
-	}
-
-	return false;
-    });
-}
 
 /* product detail gallery */
 
@@ -153,7 +122,7 @@ function carousels() {
 	}
     });
 
-    $('#main-slider').owlCarousel({
+    $('.main-slider').owlCarousel({
 	navigation: true, // Show next and prev buttons
 	slideSpeed: 300,
 	paginationSpeed: 400,
@@ -198,7 +167,7 @@ function animations() {
 
 }
 
-$.fn.alignElementsSameHeight = function() {
+function alignElementsSameHeight() {
     $('.same-height-row').each(function() {
 
 	var maxHeight = 0;
@@ -231,7 +200,4 @@ $.fn.alignElementsSameHeight = function() {
 	children.innerHeight(maxHeight);
 
     });
-
-
-
 }

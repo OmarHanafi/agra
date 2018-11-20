@@ -216,7 +216,7 @@ h1 {
   color: #555555;
   z-index: 2;
 }
-#main-slider {
+.main-slider {
   margin-bottom: 30px;
   border: solid 1px #fff;
   opacity: 0;
@@ -225,23 +225,23 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .box.slideshow ul li div,
-#main-slider ul li div {
+.main-slider ul li div {
   width: 100%;
 }
 .box.slideshow .owl-controls,
-#main-slider .owl-controls {
+.main-slider .owl-controls {
   position: absolute;
   right: 20px;
   bottom: 20px;
 }
 .box.slideshow .owl-controls .owl-buttons,
-#main-slider .owl-controls .owl-buttons {
+.main-slider .owl-controls .owl-buttons {
   display: none;
 }
 .box.slideshow .owl-controls .owl-page.active span,
-#main-slider .owl-controls .owl-page.active span,
+.main-slider .owl-controls .owl-page.active span,
 .box.slideshow .owl-controls.clickable .owl-page:hover span,
-#main-slider .owl-controls.clickable .owl-page:hover span {
+.main-slider .owl-controls.clickable .owl-page:hover span {
   background: #4fbfa8;
 }
 .breadcrumb {
