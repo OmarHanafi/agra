@@ -4,8 +4,9 @@ import { ClientNavbarComponent } from './components/clientnavbar/clientnavbar.co
 import { ClientProductComponent } from './pages/clientproduct/clientproduct.component';
 import { ClientFooterComponent } from './components/clientfooter/clientfooter.component';
 import { SharedModule } from '../shared/shared.module';
+import { ClientCategoryComponent } from './pages/clientcategory/clientcategory.component';
 
-let clientPages = [ClientHomeComponent, ClientProductComponent];
+let clientPages = [ClientHomeComponent, ClientProductComponent, ClientCategoryComponent];
 let clientComponents = [ClientNavbarComponent, ClientFooterComponent];
 
 @NgModule({

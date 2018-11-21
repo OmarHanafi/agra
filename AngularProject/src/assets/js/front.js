@@ -4,7 +4,6 @@ function jsInit(){
     productDetailGallery(4000);
     carousels();
 	utils();
-	alignElementsSameHeight();
 	setTimeout(function() {
 		alignElementsSameHeight();
 	}, 150);
@@ -12,7 +11,7 @@ function jsInit(){
 
 $(window).resize(function() {
     setTimeout(function() {
-	alignElementsSameHeight();
+		alignElementsSameHeight();
     }, 150);
 });
 

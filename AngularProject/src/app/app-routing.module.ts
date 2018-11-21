@@ -5,13 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { ClientAuthGuard } from './client/clientauth.guard';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { ClientProductComponent } from './client/pages/clientproduct/clientproduct.component';
+import { ClientCategoryComponent } from './client/pages/clientcategory/clientcategory.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path : "login", component : LoginComponent},
   {path : "logout", component : LogoutComponent},
   {path : "client", component : ClientHomeComponent, canActivate : [ClientAuthGuard]},
-  {path : "client/product/:id", component : ClientProductComponent, canActivate : [ClientAuthGuard]}
+  {path : "client/product/:id", component : ClientProductComponent, canActivate : [ClientAuthGuard]},
+  {path : "client/category/:id", component : ClientCategoryComponent, canActivate : [ClientAuthGuard]}
 ];
 
 @NgModule({

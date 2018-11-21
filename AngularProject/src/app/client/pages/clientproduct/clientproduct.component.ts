@@ -15,15 +15,17 @@ export class ClientProductComponent implements OnInit {
   productId : number;
   product : Product;
 
-  constructor(private route : ActivatedRoute, private clientService : ClientService) {}
+  constructor(private route : ActivatedRoute, private clientService : ClientService) {
+    this.productId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
+    this.clientService.getProduct(this.productId).subscribe((data) => this.product = data);   // Getting the product
+  }
 
   ngAfterViewInit(){
     jsInit();           // Loading the template's js files
   }
 
   ngOnInit() {
-      this.productId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
-      this.clientService.getProduct(this.productId).subscribe((data) => this.product = data);   // Getting the product
+      
   }
 
 }
