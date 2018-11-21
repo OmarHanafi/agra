@@ -11,10 +11,14 @@ declare function jsInit(): any;
 
 export class ClientHomeComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute) { }
+  constructor() { }
+
+  ngAfterViewInit(){
+    jsInit();           // Loading the template's js files
+  }
 
   ngOnInit() {
-    jsInit();           // Loading the template's js files
+
   }
 
 }

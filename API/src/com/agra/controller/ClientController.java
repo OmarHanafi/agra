@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agra.entity.Product;
 import com.agra.entity.User;
+import com.agra.service.ProductService;
 import com.agra.service.UserService;
 
 @RestController
@@ -21,11 +24,11 @@ import com.agra.service.UserService;
 public class ClientController {
 
 	@Autowired
-	private UserService userService;
+	private ProductService productService;
 	
-	/*@GetMapping("/featuredCategories")
-	public boolean featuredCategories(){
-		
-	}*/
+	@RequestMapping("/product")
+	public Product getProduct(@RequestParam("id") int productId){
+		return productService.getProduct(productId);
+	}
 	
 }

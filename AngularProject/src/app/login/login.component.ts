@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../shared/user';
+import { User } from '../shared/interfaces/user';
 import { Router } from '@angular/router';
-import { ClientHomeComponent } from '../client/pages/clienthome/clienthome.component';
 
 @Component({
   selector: 'app-login',
@@ -37,8 +36,7 @@ export class LoginComponent implements OnInit {
 
   redirect(usertype : number){
     if(usertype == 3)
-      //window.location.href = "client";
-        this.router.navigate(['/client']);
+      this.router.navigate(["client"]);
   }
 
   ngOnInit(){

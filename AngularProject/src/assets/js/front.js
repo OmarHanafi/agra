@@ -1,17 +1,18 @@
+
 function jsInit(){
-    animations();
+	animations();
     productDetailGallery(4000);
     carousels();
-    utils();
-    alignElementsSameHeight();
-    setTimeout(function() {
-        alignElementsSameHeight();
-    }, 150);
+	utils();
+	alignElementsSameHeight();
+	setTimeout(function() {
+		alignElementsSameHeight();
+	}, 150);
 }
 
 $(window).resize(function() {
     setTimeout(function() {
-    alignElementsSameHeight();
+	alignElementsSameHeight();
     }, 150);
 });
 

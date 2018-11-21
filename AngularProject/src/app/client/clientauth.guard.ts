@@ -16,9 +16,10 @@ export class ClientAuthGuard implements CanActivate {
         if(this.securityService.securityProcess(3))
             return true;
         else {
-            window.location.href = "login";
+            this.router.navigate(['login']);
             return false;
         }
+
     }
 
 
