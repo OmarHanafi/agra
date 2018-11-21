@@ -6,6 +6,7 @@ export interface Product {
     price : number,
     weight : number,
     description : string,
+    ingredients : string,
     date : string,
     image : string
 }

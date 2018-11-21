@@ -35,6 +35,9 @@ public class Product {
 	private String description;
 	
 	@Column()
+	private String ingredients;
+	
+	@Column()
 	private String date;
 	
 	@Column()
@@ -43,13 +46,14 @@ public class Product {
 	public Product() {}
 	
 	public Product(String reference, String designation, String category, float price, float weight,
-			String description, String date, String image) {
+			String description, String ingredients, String date, String image) {
 		this.reference = reference;
 		this.designation = designation;
 		this.category = category;
 		this.price = price;
 		this.weight = weight;
 		this.description = description;
+		this.ingredients = ingredients;
 		this.date = date;
 		this.image = image;
 	}
@@ -110,6 +114,14 @@ public class Product {
 		this.description = description;
 	}
 	
+	public String getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -129,8 +141,8 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", reference=" + reference + ", designation=" + designation + ", category="
-				+ category + ", price=" + price + ", weight=" + weight + ", description=" + description + ", date="
-				+ date + ", image=" + image + "]";
+				+ category + ", price=" + price + ", weight=" + weight + ", description=" + description
+				+ ", ingredients=" + ingredients + ", date=" + date + ", image=" + image + "]";
 	}
 	
 }
