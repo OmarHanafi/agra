@@ -5,6 +5,9 @@ function jsInit(){
     carousels();
 	utils();
 	alignElementsSameHeight();
+	setTimeout(function() {
+		alignElementsSameHeight();
+	}, 150);
 }
 
 $(window).resize(function() {

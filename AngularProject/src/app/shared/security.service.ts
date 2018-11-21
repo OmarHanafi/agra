@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from './interfaces/user';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class SecurityService {
 
   constructor() { }

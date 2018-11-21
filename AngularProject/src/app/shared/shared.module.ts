@@ -20,6 +20,6 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  providers: [SecurityService]
+  providers: []
 })
 export class SharedModule { }

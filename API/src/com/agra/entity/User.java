@@ -2,6 +2,8 @@ package com.agra.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +14,10 @@ import org.springframework.context.annotation.Scope;
 public class User {
 	
 	@Id
+	@Column()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@Column()
 	private String username;
 	
@@ -29,7 +35,8 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(String username, String password, int type) {
+	public User(int id, String username, String password, int type) {
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.type = type;
