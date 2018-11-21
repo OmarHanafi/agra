@@ -1,10 +1,10 @@
-import { category } from "./category";
+import { Category } from "./category";
 
 export interface Product {
     id : number,
     reference : string,
     designation : string,
-    category : category,
+    category : Category,
     price : number,
     weight : number,
     description : string,

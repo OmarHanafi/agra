@@ -1,11 +1,13 @@
 package com.agra.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,7 +26,8 @@ public class Product {
 	@Column()
 	private String designation;
 	
-	@OneToOne()
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.DETACH,
+						CascadeType.REFRESH,CascadeType.MERGE})
 	@JoinColumn(name="idcategory")
 	private Category category;
 	
