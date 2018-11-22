@@ -17,7 +17,7 @@
 
                 <div class="box">
                     <h1>{{category.name}}</h1>
-                    <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
+                    <p>In our {{category.name | lowercase}} department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
                 </div>
 
                 <div class="box info-bar">
@@ -52,27 +52,27 @@
 
                 <div class="row products">
 
-                    <div *ngFor="let product of products" class="col-md-3 col-sm-4">
+                    <div *ngFor="let product of currentProducts" class="col-md-3 col-sm-4">
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
                                     <div class="front">
-                                        <a href="detail.html">
+                                        <a routerLink="/client/product/{{product.id}}">
                                             <img src="assets/img/products/{{product.image}}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="back">
-                                        <a href="detail.html">
+                                        <a routerLink="/client/product/{{product.id}}">
                                             <img src="assets/img/products/{{product.image}}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <a href="detail.html" class="invisible">
+                            <a routerLink="/client/product/{{product.id}}" class="invisible">
                                 <img src="assets/img/product1.jpg" alt="" class="img-responsive">
                             </a>
                             <div class="text">
-                                <h3><a href="detail.html">{{product.designation}}</a></h3>
+                                <h3><a routerLink="/client/product/{{product.id}}">{{product.designation}}</a></h3>
                                 <p class="price">${{product.price}}</p>
                                 <p class="buttons">
                                     <a routerLink="/client/product/{{product.id}}" class="btn btn-default">View detail</a>
@@ -89,26 +89,22 @@
 
                 <div class="pages">
 
-                    <p class="loadMore">
+                    <!-- <p class="loadMore">
                         <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a>
-                    </p>
+                    </p> -->
 
                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a>
-                        </li>
-                        <li class="active"><a href="#">1</a>
-                        </li>
-                        <li><a href="#">2</a>
-                        </li>
-                        <li><a href="#">3</a>
-                        </li>
-                        <li><a href="#">4</a>
-                        </li>
-                        <li><a href="#">5</a>
-                        </li>
-                        <li><a href="#">&raquo;</a>
-                        </li>
+                        <li><a onclick="return false" href="" (click)="setPage(currentPage-1)">&laquo;</a></li>
+
+                        <ng-container *ngFor="let page of arrPage(totalPages).fill(1); let i = index">
+                            <li [ngClass]="{'active': (i+1) == currentPage}">
+                                <a onclick="return false" href="" (click)="setPage(i+1)">{{i+1}}</a>
+                            </li>
+                        </ng-container>
+
+                        <li><a onclick="return false" href="" (click)="setPage(currentPage+1)">&raquo;</a></li>
                     </ul>
+
                 </div>
 
 
