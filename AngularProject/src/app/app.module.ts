@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { ClientModule } from './client/client.module';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 
-let appModules = [ClientModule, LoginModule, SharedModule];
+let appModules = [ClientModule, LoginModule, AdminModule, SharedModule];
 
 @NgModule({
   declarations: [

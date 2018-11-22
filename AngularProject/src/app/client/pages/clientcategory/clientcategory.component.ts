@@ -26,17 +26,13 @@ export class ClientCategoryComponent implements OnInit {
 
   constructor(private route : ActivatedRoute, private clientService : ClientService,
               private paginationService : PaginationService) {
-    this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
+  }
 
-    this.clientService.getCategoryProducts(this.categoryId)
-    .subscribe((data) => {
-      this.products = data;                                                // Getting the products
-      this.totalPages = Math.ceil(this.products.length/this.perPage)+6;
-      this.setPage(this.currentPage);
-    });                         
-
-    this.clientService.getCategory(this.categoryId)
-    .subscribe((data)=> this.category = data);                             // Getting the category
+  reset(){
+    this.currentPage = 1;
+    this.products = Array();
+    this.currentProducts = Array();
+    this.category = null;
   }
 
   setPage(page : number){
@@ -51,7 +47,20 @@ export class ClientCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
+    this.route.params.subscribe(val => {
+        this.reset();
+        this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
+
+        this.clientService.getCategoryProducts(this.categoryId)
+        .subscribe((data) => {
+          this.products = data;                                                // Getting the products
+          this.totalPages = (this.products.length > 0) ? Math.ceil(this.products.length/this.perPage) : 1;
+          this.setPage(this.currentPage);
+        });                         
+
+        this.clientService.getCategory(this.categoryId)
+        .subscribe((data)=> this.category = data);                             // Getting the category
+      });    
+    }
 
 }
