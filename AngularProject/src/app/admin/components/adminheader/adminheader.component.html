@@ -1,26 +1,3 @@
-<!-- *** TOPBAR ***
- _________________________________________________________ -->
- <div id="top">
-    <div class="container">
-        <div class="col-md-6 offer" data-animate="fadeInDown">
-            <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#"> Get flat 35% off on orders over $50!</a>
-        </div>
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
-                    
-                <li><a href="logout"><i class="fa fa-sign-out"></i>Sign-out</a>
-                </li>
-                <li><a href="contact.html">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    
-
-</div>
-
-<!-- *** TOP BAR END *** -->
-
 <!-- *** NAVBAR ***
  _________________________________________________________ -->
 
@@ -51,18 +28,10 @@
 
       <div class="navbar-collapse collapse" id="navigation">
             <ul class="nav navbar-nav navbar-left">
-                <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client">Home</a>
-                </li>
-                <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client/category/1">Dried Fruits</a>
-                </li>
-                <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client/category/2">Cakes</a>
-                </li>
-                <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a href="index.html">Canned Vegetables</a>
-                </li>
+                <li routerLinkActive="active"><a routerLink="/client">Home</a>
+                <li routerLinkActive="active"><a href="index.html">Dried Fruits</a></li>
+                <li routerLinkActive="active"><a href="index.html">Cakes</a></li>
+                <li routerLinkActive="active"><a href="index.html">Canned Vegetables</a></li>
             </ul>
       </div>
       <!--/.nav-collapse -->

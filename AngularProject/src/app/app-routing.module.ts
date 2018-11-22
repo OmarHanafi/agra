@@ -6,6 +6,7 @@ import { ClientAuthGuard } from './client/clientauth.guard';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { ClientProductComponent } from './client/pages/clientproduct/clientproduct.component';
 import { ClientCategoryComponent } from './client/pages/clientcategory/clientcategory.component';
+import { AdminHomeComponent } from './admin/pages/adminhome/adminhome.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path : "logout", component : LogoutComponent},
   {path : "client", component : ClientHomeComponent,                  canActivate : [ClientAuthGuard]},
   {path : "client/product/:id", component : ClientProductComponent,   canActivate : [ClientAuthGuard]},
-  {path : "client/category/:id", component : ClientCategoryComponent, canActivate : [ClientAuthGuard]}
+  {path : "client/category/:id", component : ClientCategoryComponent, canActivate : [ClientAuthGuard]},
+  {path : "admin", component : AdminHomeComponent},
 ];
 
 @NgModule({

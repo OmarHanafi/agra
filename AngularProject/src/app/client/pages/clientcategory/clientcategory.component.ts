@@ -26,25 +26,19 @@ export class ClientCategoryComponent implements OnInit {
 
   constructor(private route : ActivatedRoute, private clientService : ClientService,
               private paginationService : PaginationService) {
+  }
 
-                route.params.subscribe(val =>{
-                  this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
-                  this.clientService.getCategoryProducts(this.categoryId)
-                  .subscribe((data) => {
-                    this.products = data;                                                // Getting the products
-                    this.totalPages = Math.ceil(this.products.length/this.perPage);
-                    this.setPage(this.currentPage);
-                  });                         
-                  this.clientService.getCategory(this.categoryId)
-                  .subscribe((data)=> this.category = data);                             // Getting the category
-                })
+  reset(){
+    this.currentPage = 1;
+    this.products = Array();
+    this.currentProducts = Array();
+    this.category = null;
   }
 
   setPage(page : number){
-    this.currentProducts=null;
     if(page > 0 && page <= this.totalPages){
       this.currentPage = page;
-      this.currentProducts = this.paginationService.getPage<Product>(this.products,page,this.perPage); // pour rendre le bon nombre de produit a partir d'un numero exact
+      this.currentProducts = this.paginationService.getPage<Product>(this.products,page,this.perPage);
     }
   }
 
@@ -53,7 +47,20 @@ export class ClientCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
+    this.route.params.subscribe(val => {
+        this.reset();
+        this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
+
+        this.clientService.getCategoryProducts(this.categoryId)
+        .subscribe((data) => {
+          this.products = data;                                                // Getting the products
+          this.totalPages = (this.products.length > 0) ? Math.ceil(this.products.length/this.perPage) : 1;
+          this.setPage(this.currentPage);
+        });                         
+
+        this.clientService.getCategory(this.categoryId)
+        .subscribe((data)=> this.category = data);                             // Getting the category
+      });    
+    }
 
 }
