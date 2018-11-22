@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientService } from '../../client.service';
+import { ClientService } from '../../services/client.service';
 import { Product } from 'src/app/shared/interfaces/product';
 
 declare function jsInit(): any;
