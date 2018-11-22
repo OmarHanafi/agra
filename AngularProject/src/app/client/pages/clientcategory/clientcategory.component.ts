@@ -31,7 +31,7 @@ export class ClientCategoryComponent implements OnInit {
     this.clientService.getCategoryProducts(this.categoryId)
     .subscribe((data) => {
       this.products = data;                                                // Getting the products
-      this.totalPages = Math.ceil(this.products.length/this.perPage);
+      this.totalPages = Math.ceil(this.products.length/this.perPage)+6;
       this.setPage(this.currentPage);
     });                         
 

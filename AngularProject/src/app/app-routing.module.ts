@@ -11,8 +11,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path : "login", component : LoginComponent},
   {path : "logout", component : LogoutComponent},
-  {path : "client", component : ClientHomeComponent, canActivate : [ClientAuthGuard]},
-  {path : "client/product/:id", component : ClientProductComponent, canActivate : [ClientAuthGuard]},
+  {path : "client", component : ClientHomeComponent,                  canActivate : [ClientAuthGuard]},
+  {path : "client/product/:id", component : ClientProductComponent,   canActivate : [ClientAuthGuard]},
   {path : "client/category/:id", component : ClientCategoryComponent, canActivate : [ClientAuthGuard]}
 ];
 
