@@ -51,10 +51,10 @@
 
       <div class="navbar-collapse collapse" id="navigation">
             <ul class="nav navbar-nav navbar-left">
-                <li routerLinkActive="active"><a routerLink="/client">Home</a>
-                <li routerLinkActive="active"><a href="index.html">Dried Fruits</a></li>
-                <li routerLinkActive="active"><a href="index.html">Cakes</a></li>
-                <li routerLinkActive="active"><a href="index.html">Canned Vegetables</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/client">Home</a>
+                <li routerLinkActive="active"><a routerLink="/client/category/1">Dried Fruits</a></li>
+                <li routerLinkActive="active"><a routerLink="/client/category/2">Cakes</a></li>
+                <li routerLinkActive="active"><a routerLink="/client/category/3">Canned Vegetables</a></li>
             </ul>
       </div>
       <!--/.nav-collapse -->
