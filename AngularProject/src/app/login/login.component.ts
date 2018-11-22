@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../shared/interfaces/user';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginError : boolean = false;
+  apiLink = environment.apiLink;
 
   constructor(private httpClient : HttpClient, private router : Router){ }
 
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
       })
     };
     this.httpClient
-    .post('http://localhost:8080/Agra-project/loginProcess', loginForm.value, httpOptions)
+    .post(this.apiLink+"loginProcess", loginForm.value, httpOptions)
     .subscribe((data : User) => {
       if(data == null) 
         this.loginError = true;
