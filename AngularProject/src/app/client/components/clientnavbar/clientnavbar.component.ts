@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'clientnavbar',
@@ -7,9 +9,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ClientNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
+
+
+  redirect(categ : number){
+    console.log("choisis numero : "+categ);
+    this.router.navigate(["client/category",categ]);
+
+
+  }
+
 
 }
