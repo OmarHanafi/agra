@@ -26,23 +26,28 @@ export class ClientCategoryComponent implements OnInit {
 
   constructor(private route : ActivatedRoute, private clientService : ClientService,
               private paginationService : PaginationService) {
-    this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
 
-    this.clientService.getCategoryProducts(this.categoryId)
-    .subscribe((data) => {
-      this.products = data;                                                // Getting the products
-      this.totalPages = Math.ceil(this.products.length/this.perPage)+6;
-      this.setPage(this.currentPage);
-    });                         
+                route.params.subscribe(val =>{
 
-    this.clientService.getCategory(this.categoryId)
-    .subscribe((data)=> this.category = data);                             // Getting the category
+                  console.log("param changed !!")
+                  this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
+                  console.log(this.categoryId)
+                  this.clientService.getCategoryProducts(this.categoryId)
+                  .subscribe((data) => {
+                    this.products = data;                                                // Getting the products
+                    this.totalPages = Math.ceil(this.products.length/this.perPage);
+                    this.setPage(this.currentPage);
+                  });                         
+              
+                  this.clientService.getCategory(this.categoryId)
+                  .subscribe((data)=> this.category = data);                             // Getting the category
+                })
   }
 
   setPage(page : number){
     if(page > 0 && page <= this.totalPages){
       this.currentPage = page;
-      this.currentProducts = this.paginationService.getPage<Product>(this.products,page,this.perPage);
+      this.currentProducts = this.paginationService.getPage<Product>(this.products,page,this.perPage); // pour rendre le bon nombre de produit a partir d'un numero exact
     }
   }
 
