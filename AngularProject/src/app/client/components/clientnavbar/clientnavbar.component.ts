@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: '.app-clientnavbar',
+  selector: 'clientnavbar',
   templateUrl: './clientnavbar.component.html',
   styleUrls: ['./clientnavbar.component.css']
 })

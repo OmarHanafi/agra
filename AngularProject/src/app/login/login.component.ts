@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { User } from '../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +27,9 @@ export class LoginComponent implements OnInit {
     };
     this.httpClient
     .post(this.apiLink+"loginProcess", loginForm.value, httpOptions)
+    .pipe(
+      catchError( this.errorHandler)
+    )
     .subscribe((data : User) => {
       if(data == null) 
         this.loginError = true;
@@ -33,8 +37,16 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("user",JSON.stringify(data));
         this.redirect(3);
       }
-    });
+    })
   }
+  errorHandler(error : HttpErrorResponse){ 
+    alert("Server Error : "+error.message);
+    return throwError( error.message || 'Server Error ! ') ;
+  }
+
+
+
+
 
   redirect(usertype : number){
     if(usertype == 3)
@@ -50,3 +62,11 @@ export class LoginComponent implements OnInit {
   }
 
 }
+/*
+
+
+
+
+
+
+*/
