@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/interfaces/category';
-import { MainService } from '../../../shared/services/main.service';
 import { Product } from 'src/app/shared/interfaces/product';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
-<<<<<<< HEAD
 import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
 import { CartItem } from 'src/app/shared/interfaces/cartItem';
-=======
-import { DomSanitizer } from '@angular/platform-browser';
-
->>>>>>> origin/master
+import { MainService } from 'src/app/shared/services/main.service';
 
 declare function jsInit(): any;
 
@@ -32,7 +27,7 @@ export class ClientCategoryComponent implements OnInit {
   arrPage = Array;
 
   constructor(private route : ActivatedRoute, private mainService : MainService,
-              private paginationService : PaginationService, private domSanitizer : DomSanitizer) {
+              private paginationService : PaginationService) {
   }
 
   reset(){
@@ -60,7 +55,7 @@ export class ClientCategoryComponent implements OnInit {
 
         this.mainService.getCategoryProducts(this.categoryId)
         .subscribe((data) => {
-          this.products = this.mainService.sanitizeProducts(data);                                                // Getting the products
+          this.products = data;                                                // Getting the products
           this.totalPages = (this.products.length > 0) ? Math.ceil(this.products.length/this.perPage) : 1;
           this.setPage(this.currentPage);
         });                         
@@ -97,7 +92,6 @@ export class ClientCategoryComponent implements OnInit {
             alreadyExist=true;
             console.log("added a same")
           }
-          
         }
         if(alreadyExist==false)
           order.cartItems.push(newItem);

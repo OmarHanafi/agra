@@ -130,20 +130,6 @@
                         <!-- /.product -->
                     </div>
 
-<<<<<<< HEAD
-                    <div class="col-md-3 col-sm-6">
-                        <div class="product same-height">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front">
-                                        <a href="detail.html">
-                                            <img src="assets/img/product1.jpg" alt="" class="img-responsive">
-                                        </a>
-                                    </div>
-                                    <div class="back">
-                                        <a href="detail.html">
-                                            <img src="assets/img/product1_2.jpg" alt="" class="img-responsive">
-=======
                     <div *ngFor="let product of currentProducts;" class="col-md-3 col-sm-4">
                         <div class="product">
                             <div class="flip-container">
@@ -156,18 +142,12 @@
                                     <div class="back">
                                         <a routerLink="/client/product/{{product.id}}">
                                             <img [src]="product.safeUrl" alt="" class="img-responsive">
->>>>>>> origin/master
                                         </a>
                                     </div>
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <a href="detail.html" class="invisible">
-                                <img src="assets/img/product1.jpg" alt="" class="img-responsive">
-=======
                             <a routerLink="/client/product/{{product.id}}" class="invisible">
                                 <img [src]="product.safeUrl" alt="" class="img-responsive">
->>>>>>> origin/master
                             </a>
                             <div class="text">
                                 <h3>Fur coat</h3>
