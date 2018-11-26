@@ -1,5 +1,7 @@
 package com.agra.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -20,6 +22,11 @@ public class CategoryDAOImpl implements CategoryDAO{
 	public Category getCategory(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();		
 		return (Category) currentSession.get(Category.class,id);
+	}
+
+	@Override
+	public List<Category> getCategories() {
+		return sessionFactory.getCurrentSession().createQuery("from Category").getResultList();
 	}
 
 }

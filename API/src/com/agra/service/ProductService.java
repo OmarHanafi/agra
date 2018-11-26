@@ -10,4 +10,6 @@ public interface ProductService {
 	
 	public List<Product> getProductsByCategory(int idcategory);
 	
+	public void addProduct(Product product);
+	
 }

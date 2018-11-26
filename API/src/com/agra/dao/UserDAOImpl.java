@@ -1,5 +1,7 @@
 package com.agra.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -17,10 +19,13 @@ public class UserDAOImpl implements UserDAO{
 	
 	@Override
 	public User getUser(String username) {
+		User theUser = null;
 		Session currentSession = sessionFactory.getCurrentSession();		
-		User theUser = (User) currentSession.createQuery("from User u where u.username = :username")
+		List list = currentSession.createQuery("from User u where u.username = :username")
 									 .setParameter("username", username)
-									 .getResultList().get(0);
+									 .getResultList();
+		if(!list.isEmpty())
+			theUser = (User) list.get(0);
 		return theUser;
 	}
 

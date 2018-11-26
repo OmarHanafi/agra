@@ -12,7 +12,7 @@ let appModules = [ClientModule, LoginModule, AdminModule, SharedModule];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

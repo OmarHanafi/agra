@@ -52,24 +52,24 @@
 
                 <div class="row products">
 
-                    <div *ngFor="let product of currentProducts" class="col-md-3 col-sm-4">
+                    <div *ngFor="let product of currentProducts;" class="col-md-3 col-sm-4">
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
                                     <div class="front">
                                         <a routerLink="/client/product/{{product.id}}">
-                                            <img src="assets/img/products/{{product.image}}" alt="" class="img-responsive">
+                                            <img [src]="product.safeUrl" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="back">
                                         <a routerLink="/client/product/{{product.id}}">
-                                            <img src="assets/img/products/{{product.image}}" alt="" class="img-responsive">
+                                            <img [src]="product.safeUrl" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <a routerLink="/client/product/{{product.id}}" class="invisible">
-                                <img src="assets/img/product1.jpg" alt="" class="img-responsive">
+                                <img [src]="product.safeUrl" alt="" class="img-responsive">
                             </a>
                             <div class="text">
                                 <h3><a routerLink="/client/product/{{product.id}}">{{product.designation}}</a></h3>

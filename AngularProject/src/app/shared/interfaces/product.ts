@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { SafeUrl } from "@angular/platform-browser";
 
 export interface Product {
     id : number,
@@ -10,5 +11,6 @@ export interface Product {
     description : string,
     ingredients : string,
     date : string,
-    image : string
+    base64Image : string,
+    safeUrl : SafeUrl
 }
