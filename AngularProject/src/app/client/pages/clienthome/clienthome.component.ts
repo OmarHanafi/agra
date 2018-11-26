@@ -4,14 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 declare function jsInit(): any;
 
 @Component({
-  selector: 'app-clienthome',
+  selector: 'clienthome',
   templateUrl: './clienthome.component.html',
   styleUrls: ['./clienthome.component.css'],
 })
 
 export class ClientHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngAfterViewInit(){
     alert("hello");
@@ -19,7 +21,7 @@ export class ClientHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
   }
 
 }

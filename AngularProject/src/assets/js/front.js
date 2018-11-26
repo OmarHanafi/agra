@@ -1,13 +1,11 @@
 
 function jsInit(){
-	
 	animations();
     productDetailGallery(4000);
     carousels();
 	utils();
 	imageUpload();
-	setTimeout(function() {
-		alert("hello");
+	setInterval(function() {
 		alignElementsSameHeight();
 	}, 150);
 }

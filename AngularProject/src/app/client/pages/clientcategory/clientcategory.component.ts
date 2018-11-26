@@ -10,7 +10,7 @@ import { MainService } from 'src/app/shared/services/main.service';
 declare function jsInit(): any;
 
 @Component({
-  selector: 'app-clientcategory',
+  selector: 'clientcategory',
   templateUrl: './clientcategory.component.html',
   styleUrls: ['./clientcategory.component.css']
 })
