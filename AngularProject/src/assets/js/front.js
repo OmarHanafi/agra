@@ -5,7 +5,7 @@ function jsInit(){
     carousels();
 	utils();
 	imageUpload();
-	setTimeout(function() {
+	setInterval(function() {
 		alignElementsSameHeight();
 	}, 150);
 }

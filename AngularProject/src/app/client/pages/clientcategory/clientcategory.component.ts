@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 declare function jsInit(): any;
 
 @Component({
-  selector: 'app-clientcategory',
+  selector: 'clientcategory',
   templateUrl: './clientcategory.component.html',
   styleUrls: ['./clientcategory.component.css']
 })
