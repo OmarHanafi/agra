@@ -15,7 +15,7 @@ import com.agra.service.CategoryService;
 import com.agra.service.ProductService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RequestMapping("/main")
 public class MainController {
 

@@ -4,6 +4,8 @@ import { Category } from 'src/app/shared/interfaces/category';
 import { ClientService } from '../../services/client.service';
 import { Product } from 'src/app/shared/interfaces/product';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
+import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
+import { CartItem } from 'src/app/shared/interfaces/cartItem';
 
 declare function jsInit(): any;
 
@@ -63,4 +65,47 @@ export class ClientCategoryComponent implements OnInit {
       });    
     }
 
+
+
+
+    addToCart(newProduct : Product){
+
+      //create a cartItem
+      let newItem : CartItem = {product : newProduct,
+                                quantity : 1};
+      
+      //check if there is a cart if not create one and store it in the session
+      let order : OrderDetail = <OrderDetail> JSON.parse(sessionStorage.getItem("order"));
+      if(order == null)
+      {
+        let newOrder : OrderDetail ={cartItems : Array<CartItem>()} ;
+        newOrder.cartItems.push(newItem);
+        console.log("item added")
+        sessionStorage.setItem("order",JSON.stringify(newOrder));
+      }
+      else{
+        let alreadyExist = false;
+        for(let item of order.cartItems){
+          if(item.product.id==newProduct.id)
+          {
+            item.quantity++;
+            alreadyExist=true;
+            console.log("added a same")
+          }
+          
+        }
+        if(alreadyExist==false)
+          order.cartItems.push(newItem);
+
+       
+        console.log("item added")
+        sessionStorage.setItem("order",JSON.stringify(order));
+      }
+      
+
+      
+
+      
+      
+    }
 }

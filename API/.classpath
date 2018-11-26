@@ -17,6 +17,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Adib_/Desktop/apache-tomcat-9.0.13-windows-x64/apache-tomcat-9.0.13/lib/tomcat-dbcp.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.loginError = true;
       else {
         sessionStorage.setItem("user",JSON.stringify(data));
-        this.redirect(3);
+        this.redirect(data.type);
       }
     })
   }

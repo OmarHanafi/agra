@@ -5,6 +5,7 @@ import { ClientProductComponent } from './pages/clientproduct/clientproduct.comp
 import { ClientFooterComponent } from './components/clientfooter/clientfooter.component';
 import { SharedModule } from '../shared/shared.module';
 import { ClientCategoryComponent } from './pages/clientcategory/clientcategory.component';
+import { ClientcartComponent } from './pages/clientcart/clientcart.component';
 
 let clientPages = [ClientHomeComponent, ClientProductComponent, ClientCategoryComponent];
 let clientComponents = [ClientNavbarComponent, ClientFooterComponent];
@@ -12,7 +13,8 @@ let clientComponents = [ClientNavbarComponent, ClientFooterComponent];
 @NgModule({
   declarations: [
     clientPages,
-    clientComponents
+    clientComponents,
+    ClientcartComponent
   ],
   imports: [
     SharedModule
