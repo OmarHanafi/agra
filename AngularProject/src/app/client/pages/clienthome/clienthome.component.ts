@@ -16,7 +16,6 @@ export class ClientHomeComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    alert("hello");
     jsInit();           // Loading the template's js files
   }
 
