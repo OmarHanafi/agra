@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/interfaces/category';
-import { ClientService } from '../../services/client.service';
+import { MainService } from '../../../shared/services/main.service';
 import { Product } from 'src/app/shared/interfaces/product';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
+<<<<<<< HEAD
 import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
 import { CartItem } from 'src/app/shared/interfaces/cartItem';
+=======
+import { DomSanitizer } from '@angular/platform-browser';
+
+>>>>>>> origin/master
 
 declare function jsInit(): any;
 
@@ -26,8 +31,8 @@ export class ClientCategoryComponent implements OnInit {
   perPage : number = 12;
   arrPage = Array;
 
-  constructor(private route : ActivatedRoute, private clientService : ClientService,
-              private paginationService : PaginationService) {
+  constructor(private route : ActivatedRoute, private mainService : MainService,
+              private paginationService : PaginationService, private domSanitizer : DomSanitizer) {
   }
 
   reset(){
@@ -53,14 +58,14 @@ export class ClientCategoryComponent implements OnInit {
         this.reset();
         this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
 
-        this.clientService.getCategoryProducts(this.categoryId)
+        this.mainService.getCategoryProducts(this.categoryId)
         .subscribe((data) => {
-          this.products = data;                                                // Getting the products
+          this.products = this.mainService.sanitizeProducts(data);                                                // Getting the products
           this.totalPages = (this.products.length > 0) ? Math.ceil(this.products.length/this.perPage) : 1;
           this.setPage(this.currentPage);
         });                         
 
-        this.clientService.getCategory(this.categoryId)
+        this.mainService.getCategory(this.categoryId)
         .subscribe((data)=> this.category = data);                             // Getting the category
       });    
     }

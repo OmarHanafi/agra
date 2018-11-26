@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -49,13 +51,17 @@ public class Product {
 	@Column()
 	private String date;
 	
+	@Lob
 	@Column()
-	private String image;
+	private byte[] image;
+	
+	@Transient
+	private String base64Image;
 	
 	public Product() {}
 	
 	public Product(String reference, String designation, Category category, float price, float weight,
-			String description, String ingredients, String date, String image) {
+			String description, String ingredients, String date, byte[] image, String base64Image) {
 		this.reference = reference;
 		this.designation = designation;
 		this.category = category;
@@ -65,6 +71,7 @@ public class Product {
 		this.ingredients = ingredients;
 		this.date = date;
 		this.image = image;
+		this.base64Image = base64Image;
 	}
 
 	public int getId() {
@@ -138,20 +145,29 @@ public class Product {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	public String getImage() {
+
+	public byte[] getImage() {
 		return image;
 	}
-	
-	public void setImage(String image) {
+
+	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public String getBase64Image() {
+		return base64Image;
+	}
+
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", reference=" + reference + ", designation=" + designation + ", category="
 				+ category + ", price=" + price + ", weight=" + weight + ", description=" + description
-				+ ", ingredients=" + ingredients + ", date=" + date + ", image=" + image + "]";
+				+ ", ingredients=" + ingredients + ", date=" + date + "]";
 	}
-	
+
+
 }

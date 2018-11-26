@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientService } from '../../services/client.service';
+import { MainService } from '../../../shared/services/main.service';
 import { Product } from 'src/app/shared/interfaces/product';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 declare function jsInit(): any;
 
@@ -15,9 +17,12 @@ export class ClientProductComponent implements OnInit {
   productId : number;
   product : Product;
 
-  constructor(private route : ActivatedRoute, private clientService : ClientService) {
+  constructor(private route : ActivatedRoute, private mainService : MainService) {
     this.productId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
-    this.clientService.getProduct(this.productId).subscribe((data) => this.product = data);   // Getting the product
+    this.mainService.getProduct(this.productId).subscribe((data) => {
+      let arr = new Array(); arr.push(data);                              // Creating an array of data
+      this.product = mainService.sanitizeProducts(arr)[0];              // Getting the product
+    });   
   }
 
   ngAfterViewInit(){

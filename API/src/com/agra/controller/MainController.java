@@ -40,4 +40,9 @@ public class MainController {
 		return categoryService.getCategory(categoryId);
 	}
 	
+	@RequestMapping("/categories")
+	public List<Category> getCategories(){
+		return categoryService.getCategories();
+	}
+	
 }

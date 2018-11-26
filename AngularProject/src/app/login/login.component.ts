@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.httpClient
     .post(this.apiLink+"loginProcess", loginForm.value, httpOptions)
     .pipe(
-      catchError( this.errorHandler)
+      catchError(this.errorHandler)
     )
     .subscribe((data : User) => {
       if(data == null) 
@@ -44,12 +44,10 @@ export class LoginComponent implements OnInit {
     return throwError( error.message || 'Server Error ! ') ;
   }
 
-
-
-
-
   redirect(usertype : number){
-    if(usertype == 3)
+    if(usertype == 0)
+      this.router.navigate(["admin"]);
+    else if (usertype == 3)
       this.router.navigate(["client"]);
   }
 
@@ -62,11 +60,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-/*
-
-
-
-
-
-
-*/

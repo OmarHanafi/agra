@@ -21,4 +21,18 @@ public class ProductDAOImpl implements ProductDAO{
 		return product;
 	}
 
+	@Override
+	public int getMaxId() {
+		int maxid = (int) sessionFactory.getCurrentSession()
+											.createQuery("select max(p.id) from Product p")
+											.setMaxResults(1)
+											.getSingleResult();
+		return maxid;
+	}
+
+	@Override
+	public void addProduct(Product product) {
+		sessionFactory.getCurrentSession().save(product);
+	}
+
 }

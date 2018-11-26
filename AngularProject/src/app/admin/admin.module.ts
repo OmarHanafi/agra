@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { AdminHeaderComponent } from './components/adminheader/adminheader.component';
 import { AdminHomeComponent } from './pages/adminhome/adminhome.component';
+import { AdminProductComponent } from './pages/adminproduct/adminproduct.component';
 
-let adminPages = [AdminHomeComponent];
+let adminPages = [AdminHomeComponent, AdminProductComponent];
 let adminComponents = [AdminHeaderComponent];
 
 @NgModule({
