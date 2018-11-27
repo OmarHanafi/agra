@@ -42,7 +42,7 @@
                   <span class="sr-only">Toggle search</span>
                   <i class="fa fa-search"></i>
               </button>
-              <a class="btn btn-default navbar-toggle" href="" onclick="return false;" (click)="logOrder();">
+              <a class="btn btn-default navbar-toggle" routerLink="/client/cart">
                   <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
               </a>
           </div>
@@ -70,7 +70,12 @@
       <div class="navbar-buttons">
 
           <div class="navbar-collapse collapse right" id="basket-overview">
-              <a href="" onclick="return false;" (click)="logOrder();" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+
+                <a routerLink="/client/cart" class="btn btn-primary navbar-btn">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="hidden-sm">{{itemsNumber}} items in cart</span>
+                </a>
+
           </div>
           <!--/.nav-collapse -->
 

@@ -32,7 +32,7 @@ import com.agra.entity.*;
 import com.agra.service.UserService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 	
 	@Autowired

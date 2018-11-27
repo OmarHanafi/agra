@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../services/admin.service';
-import { Product } from 'src/app/shared/interfaces/product';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from 'src/app/shared/interfaces/category';
 import { MainService } from 'src/app/shared/services/main.service';
 
 declare function jsInit(): any;
 
 @Component({
-  selector: 'app-adminproduct',
+  selector: 'adminproduct',
   templateUrl: './adminproduct.component.html',
   styleUrls: ['./adminproduct.component.css']
 })
 export class AdminProductComponent implements OnInit {
 
-  constructor(private adminService : AdminService, private mainService : MainService) { }
+  constructor(private mainService : MainService) { }
 
-  SelectedFile : File = null;
   allCategories : Category[] = new Array<Category>();
+
+  activeTab : number = 1;     // 0 = Product list ; 1 = New product
 
   ngAfterViewInit(){
     jsInit();           // Loading the template's js files
@@ -28,18 +27,12 @@ export class AdminProductComponent implements OnInit {
     })
   }
 
-  addProduct(data){
-    let formdata = new FormData();
-    let category : Category = <Category> {id:data.category,name:null}
-    data.category = category;
-    formdata.append("file",this.SelectedFile);
-    formdata.append("product",JSON.stringify(data));
-    this.adminService.addProduct(formdata);
-    console.log(data);
+  isActive(val : number) : boolean {
+    return (this.activeTab == val);
   }
 
-  onFileSelected(event){
-    this.SelectedFile = event.target.files[0];
+  toggleTab(val : number){
+    this.activeTab = val;
   }
 
 }
