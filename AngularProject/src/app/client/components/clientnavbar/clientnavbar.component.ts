@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
+import { OrderService } from '../../order.service';
 
 
 @Component({
@@ -10,18 +11,22 @@ import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
 })
 export class ClientNavbarComponent implements OnInit {
 
-  private isNull:boolean = true;
-  private itemsNumber : number=0;
+  public nbItems : number;
 
-  constructor(private router : Router) {
-    let order : OrderDetail = <OrderDetail> JSON.parse(sessionStorage.getItem("order"));
-    if(order!=null){
-      this.itemsNumber=order.cartItems.length;
-      this.isNull=false;
+  constructor(private orderService : OrderService) {
+
+    this.load();
+
+    
+
     }
       
 
-   }
+   
+    load(){
+      let order = this.orderService.loadOrder();
+      this.nbItems=order.cartItems.length;
+    }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/interfaces/category';
 import { MainService } from '../../../shared/services/main.service';
@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CartItem } from 'src/app/shared/interfaces/cartItem';
 import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
 import { OrderService } from '../../order.service';
+import { ClientNavbarComponent } from '../../components/clientnavbar/clientnavbar.component';
 
 
 declare function jsInit(): any;
@@ -29,6 +30,11 @@ export class ClientCategoryComponent implements OnInit {
   perPage : number = 12;
   arrPage = Array;
 
+  @ViewChild(ClientNavbarComponent)
+  private child: ClientNavbarComponent;
+
+
+
   constructor(private route : ActivatedRoute, private mainService : MainService,private orderService : OrderService,
               private paginationService : PaginationService, private domSanitizer : DomSanitizer) {
   }
@@ -48,11 +54,12 @@ export class ClientCategoryComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    jsInit();           // Loading the template's js files
+    jsInit();  // Loading the template's js files
   }
 
   ngOnInit() {
     this.route.params.subscribe(val => {
+       
         this.reset();
         this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
 
@@ -72,6 +79,7 @@ export class ClientCategoryComponent implements OnInit {
     //call the order service to add a new item
     addToCart(newProduct : Product){
       this.orderService.addToCart(newProduct);
+      this.child.load();
     }
 
 
