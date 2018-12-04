@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/interfaces/category';
 import { MainService } from '../../../shared/services/main.service';
 import { Product } from 'src/app/shared/interfaces/product';
 import { Page } from 'src/app/shared/classes/page';
+import { OrderService } from '../../order.service';
+import { ClientNavbarComponent } from '../../components/clientnavbar/clientnavbar.component';
 
 
 declare function jsInit(): any;
@@ -19,9 +21,12 @@ export class ClientCategoryComponent implements OnInit {
   category : Category;
   products : Product[];
 
+  @ViewChild(ClientNavbarComponent)
+  child : ClientNavbarComponent;
+
   page : Page;
 
-  constructor(private route : ActivatedRoute, private mainService : MainService) {
+  constructor(private route : ActivatedRoute, private mainService : MainService, private orderService : OrderService) {
   }
 
   reset(){
@@ -48,5 +53,13 @@ export class ClientCategoryComponent implements OnInit {
         .subscribe((data)=> this.category = data);                             // Getting the category
       });    
     }
+
+    //call the order service to add a new item
+    addToCart(newProduct : Product){
+      this.orderService.addToCart(newProduct);
+      this.child.load();
+    }
+
+
 
 }
