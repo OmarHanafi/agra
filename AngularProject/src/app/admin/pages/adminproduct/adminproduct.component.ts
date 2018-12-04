@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../services/admin.service';
-import { Product } from 'src/app/shared/interfaces/product';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Category } from 'src/app/shared/interfaces/category';
 import { MainService } from 'src/app/shared/services/main.service';
+import { Product } from 'src/app/shared/interfaces/product';
+import { AdminListProductComponent } from '../../components/adminlistproduct/adminlistproduct.component';
 
 declare function jsInit(): any;
 
 @Component({
-  selector: 'app-adminproduct',
+  selector: 'adminproduct',
   templateUrl: './adminproduct.component.html',
   styleUrls: ['./adminproduct.component.css']
 })
 export class AdminProductComponent implements OnInit {
 
-  constructor(private adminService : AdminService, private mainService : MainService) { }
+  constructor(private mainService : MainService) { }
 
-  SelectedFile : File = null;
   allCategories : Category[] = new Array<Category>();
 
+  productList : Product[] = new Array<Product>();
+
+  activeTab : number = 0;     // 0 = Product list ; 1 = New product
+
   ngAfterViewInit(){
-    jsInit();           // Loading the template's js files
+    jsInit();                 // Loading the template's js files
   }
 
   ngOnInit() {
@@ -28,18 +31,18 @@ export class AdminProductComponent implements OnInit {
     })
   }
 
-  addProduct(data){
-    let formdata = new FormData();
-    let category : Category = <Category> {id:data.category,name:null}
-    data.category = category;
-    formdata.append("file",this.SelectedFile);
-    formdata.append("product",JSON.stringify(data));
-    this.adminService.addProduct(formdata);
-    console.log(data);
+  onLoadProducts($event){                   // Called from the child component
+    this.mainService.getProducts().subscribe(data => {
+      this.productList = this.mainService.sanitizeProducts(data);              // Loading the products
+    })
   }
 
-  onFileSelected(event){
-    this.SelectedFile = event.target.files[0];
+  isActive(val : number) : boolean {
+    return (this.activeTab == val);
+  }
+
+  toggleTab(val : number){
+    this.activeTab = val;
   }
 
 }

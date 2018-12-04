@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import org.springframework.stereotype.Service;
 
@@ -26,22 +27,14 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProduct(int id) {
 		Product product = productDAO.getProduct(id);
-		String base64Image = Base64.getEncoder().encodeToString(product.getImage());
-		product.setBase64Image(base64Image);
+		product = base64Products(Arrays.asList(product)).get(0);
 		return product;
 	}
 
 	@Transactional
 	@Override
 	public List<Product> getProductsByCategory(int idcategory) {
-		List<Product> products = categoryDAO.getCategory(idcategory).getProducts();
-		List<Product> resultproducts = new ArrayList<Product>();
-		for(Product product : products){
-			String base64Image = Base64.getEncoder().encodeToString(product.getImage());
-			product.setBase64Image(base64Image);
-			resultproducts.add(product);
-		}
-		return resultproducts;	
+		return base64Products(categoryDAO.getCategory(idcategory).getProducts());	
 	}
 
 	@Transactional
@@ -49,6 +42,34 @@ public class ProductServiceImpl implements ProductService {
 	public void addProduct(Product product) {
 		product.setReference("ART"+String.format("%06d", productDAO.getMaxId()+1));
 		productDAO.addProduct(product);
+	}
+
+	@Transactional
+	@Override
+	public List<Product> getProducts() {
+		return base64Products(productDAO.getProducts());
+	}
+	
+	@Transactional
+	@Override
+	public void updateProduct(Product product) {
+		productDAO.updateProduct(product);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteProduct(int id) {
+		this.productDAO.deleteProduct(id);
+	}
+	
+	public List<Product> base64Products(List<Product> products){
+		List<Product> resultproducts = new ArrayList<Product>();
+		for(Product product : products){
+			String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+			product.setBase64Image(base64Image);
+			resultproducts.add(product);
+		}
+		return resultproducts;
 	}
 
 }

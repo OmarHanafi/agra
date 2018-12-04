@@ -1,0 +1,91 @@
+<div class="col-md-9">
+  <div class="box">
+      <h1>New product</h1>
+
+      <div id="successalert" style="display:none" class="alert alert-success" role="alert">
+        Product added !
+      </div>
+      
+      <form #addProductForm="ngForm" (ngSubmit)="addProduct(addProductForm.value); addProductForm.reset();">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="designaiton">Designation</label>
+                      <input required ngModel type="text" class="form-control" id="designation" name="designation">
+                  </div>
+              </div>
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="category">Category</label>
+                      <select class="form-control" ngModel name="category" id="category">
+                          <ng-container *ngFor="let category of allCategories">
+                              <option value="{{category.id}}">{{category.name}}</option>
+                          </ng-container>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="price">Price</label>
+                      <input required ngModel type="text" class="form-control" id="price" name="price">
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="weight">Weight</label>
+                      <input required ngModel type="text" class="form-control" id="weight" name="weight">
+                  </div>
+              </div>
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea required ngModel id="description" name="description" class="form-control" rows="2"></textarea>
+                </div>
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="ingredients">Ingredients</label>
+                    <textarea required ngModel id="ingredients" name="ingredients" class="form-control" rows="1"></textarea>
+                </div>
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label>Image</label>
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                          <span class="btn btn-default btn-file">
+                              Browse… <input required (change)="onFileSelected($event)" 
+                                              id="image" name="image" type="file" class="imgInp">
+                          </span>
+                      </span>
+                      <input type="text" class="form-control imagetext" readonly>
+                  </div>
+                  <img class='img-upload' [ngClass]="{'thumbnail':(SelectedFile !== null)}"/>      
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

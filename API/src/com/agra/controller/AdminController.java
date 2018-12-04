@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import com.agra.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin()
 @RequestMapping("/admin")
 public class AdminController {
 	
@@ -31,10 +32,24 @@ public class AdminController {
 	
 	@PostMapping(value="/addProduct")
 	public void addProduct(@RequestPart("file") MultipartFile file, 
-			@RequestParam("product") String productJson) throws IOException {
+			@RequestParam("product") String productJson) throws Exception {
 		Product product = new ObjectMapper().readValue(productJson, Product.class);
 		product.setImage(IOUtils.toByteArray(file.getInputStream()));
 		productService.addProduct(product);
+	}
+	
+	@PostMapping(value="/updateProduct")
+	public void updateProduct(@RequestPart(value="file", required=false) MultipartFile file, 
+			@RequestParam("product") String productJson) throws Exception {
+		Product product = new ObjectMapper().readValue(productJson, Product.class);
+		if(file != null)
+			product.setImage(IOUtils.toByteArray(file.getInputStream()));
+		productService.updateProduct(product);
+	}
+	
+	@GetMapping(value="/deleteProduct")
+	public void deleteProduct(@RequestParam("id") int id){
+		this.productService.deleteProduct(id);
 	}
 
 }

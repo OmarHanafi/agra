@@ -1,5 +1,7 @@
 package com.agra.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -33,6 +35,23 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public void addProduct(Product product) {
 		sessionFactory.getCurrentSession().save(product);
+	}
+
+	@Override
+	public List<Product> getProducts() {
+		return sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
+	}
+
+	@Override
+	public void updateProduct(Product product) {
+		sessionFactory.getCurrentSession().saveOrUpdate(product);
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Product product = session.get(Product.class, id);
+		session.delete(product);
 	}
 
 }

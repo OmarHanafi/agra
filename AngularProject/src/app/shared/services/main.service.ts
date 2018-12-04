@@ -24,6 +24,10 @@ export class MainService {
     return this.httpClient.get<Product[]>(this.apiLink+"main/categoryProducts?id="+idcategory);
   }
 
+  getProducts() : Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.apiLink+"main/products");
+  }
+
   getCategory(id : number) : Observable<Category> {
     return this.httpClient.get<Category>(this.apiLink+"main/category?id="+id);
   }

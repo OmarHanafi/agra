@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/interfaces/category';
 import { MainService } from '../../../shared/services/main.service';
 import { Product } from 'src/app/shared/interfaces/product';
-import { PaginationService } from 'src/app/shared/services/pagination.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Page } from 'src/app/shared/classes/page';
 
 
 declare function jsInit(): any;
@@ -20,28 +19,14 @@ export class ClientCategoryComponent implements OnInit {
   category : Category;
   products : Product[];
 
-  currentProducts : Product[];          // Products currently displayed
-  currentPage : number = 1;
-  totalPages : number;
-  perPage : number = 12;
-  arrPage = Array;
+  page : Page;
 
-  constructor(private route : ActivatedRoute, private mainService : MainService,
-              private paginationService : PaginationService, private domSanitizer : DomSanitizer) {
+  constructor(private route : ActivatedRoute, private mainService : MainService) {
   }
 
   reset(){
-    this.currentPage = 1;
     this.products = Array();
-    this.currentProducts = Array();
     this.category = null;
-  }
-
-  setPage(page : number){
-    if(page > 0 && page <= this.totalPages){
-      this.currentPage = page;
-      this.currentProducts = this.paginationService.getPage<Product>(this.products,page,this.perPage);
-    }
   }
 
   ngAfterViewInit(){
@@ -55,9 +40,8 @@ export class ClientCategoryComponent implements OnInit {
 
         this.mainService.getCategoryProducts(this.categoryId)
         .subscribe((data) => {
-          this.products = this.mainService.sanitizeProducts(data);                                                // Getting the products
-          this.totalPages = (this.products.length > 0) ? Math.ceil(this.products.length/this.perPage) : 1;
-          this.setPage(this.currentPage);
+          this.products = this.mainService.sanitizeProducts(data);             // Getting the products
+          this.page = new Page(12, data);
         });                         
 
         this.mainService.getCategory(this.categoryId)

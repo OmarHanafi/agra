@@ -15,7 +15,7 @@ import com.agra.service.CategoryService;
 import com.agra.service.ProductService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin()
 @RequestMapping("/main")
 public class MainController {
 
@@ -33,6 +33,11 @@ public class MainController {
 	@RequestMapping("/categoryProducts")
 	public List<Product> getCategoryProducts(@RequestParam("id") int idcategory){
 		return productService.getProductsByCategory(idcategory);
+	}
+	
+	@RequestMapping("/products")
+	public List<Product> getProducts(){
+		return productService.getProducts();
 	}
 	
 	@RequestMapping("/category")

@@ -50,9 +50,9 @@
                     </div>
                 </div>
 
+                <ng-container *ngIf="page !== undefined">
                 <div class="row products">
-
-                    <div *ngFor="let product of currentProducts;" class="col-md-3 col-sm-4">
+                    <div *ngFor="let product of page.currentItems;" class="col-md-3 col-sm-4">
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
@@ -94,18 +94,19 @@
                     </p> -->
                     
                     <ul class="pagination">
-                        <li><a onclick="return false" href="" (click)="setPage(currentPage-1)">&laquo;</a></li>
+                        <li><a onclick="return false" href="" (click)="page.setPage(page.currentPage-1)">&laquo;</a></li>
 
-                        <ng-container *ngFor="let page of arrPage(totalPages).fill(0); let i = index">
-                            <li [ngClass]="{'active': (i+1) == currentPage}">
-                                <a onclick="return false" href="" (click)="setPage(i+1)">{{i+1}}</a>
+                        <ng-container *ngFor="let p of page.arr(page.totalPages).fill(0); let i = index">
+                            <li [ngClass]="{'active': (i+1) == page.currentPage}">
+                                <a onclick="return false" href="" (click)="page.setPage(i+1)">{{i+1}}</a>
                             </li>
                         </ng-container>
 
-                        <li><a onclick="return false" href="" (click)="setPage(currentPage+1)">&raquo;</a></li>
+                        <li><a onclick="return false" href="" (click)="page.setPage(page.currentPage+1)">&raquo;</a></li>
                     </ul>
 
                 </div>
+                </ng-container>
 
 
             </div>

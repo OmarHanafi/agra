@@ -3,9 +3,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminHeaderComponent } from './components/adminheader/adminheader.component';
 import { AdminHomeComponent } from './pages/adminhome/adminhome.component';
 import { AdminProductComponent } from './pages/adminproduct/adminproduct.component';
+import { AdminAddProductComponent } from './components/adminaddproduct/adminaddproduct.component';
+import { AdminListProductComponent } from './components/adminlistproduct/adminlistproduct.component';
+import { AdminProductDetailComponent } from './components/adminproductdetail/adminproductdetail.component';
 
 let adminPages = [AdminHomeComponent, AdminProductComponent];
-let adminComponents = [AdminHeaderComponent];
+let adminComponents = [AdminHeaderComponent, AdminAddProductComponent, AdminListProductComponent, AdminProductDetailComponent];
 
 @NgModule({
   declarations: [

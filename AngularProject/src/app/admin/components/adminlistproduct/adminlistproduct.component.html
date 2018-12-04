@@ -1,0 +1,45 @@
+<div class="col-md-9">
+    <div class="box">
+        <h1>Product list</h1>
+        <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Reference</th>
+                  <th>Designation</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let product of page.currentItems">
+                    <tr>
+                        <td>{{product.id}}</td>
+                        <td>{{product.reference}}</td>
+                        <td>{{product.designation}}</td>
+                        <td>{{product.category.name}}</td>
+                        <td><button (click)="adminProductDetail.setProduct(product)" type="button" class="btn btn-info">
+                                <i class="fa fa-info-circle"></i> Details
+                            </button>
+                        </td>
+                      </tr>
+                </ng-container>
+              </tbody>
+            </table>
+        </div>
+        <div class="pages">
+            <ul class="pagination">
+                <li><a onclick="return false" href="" (click)="page.setPage(page.currentPage-1)">&laquo;</a></li>
+
+                <ng-container *ngFor="let p of page.arr(page.totalPages).fill(0); let i = index">
+                    <li [ngClass]="{'active': (i+1) == page.currentPage}">
+                        <a onclick="return false" href="" (click)="page.setPage(i+1)">{{i+1}}</a>
+                    </li>
+                </ng-container>
+
+                <li><a onclick="return false" href="" (click)="page.setPage(page.currentPage+1)">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    <adminproductdetail [allCategories]="allCategories" (loadProducts)="fireLoadProducts()"></adminproductdetail>
+  </div>

@@ -1,5 +1,7 @@
 package com.agra.entity;
 
+import java.util.Arrays;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +17,11 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="product")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 	
 	@Id
@@ -166,7 +170,7 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", reference=" + reference + ", designation=" + designation + ", category="
 				+ category + ", price=" + price + ", weight=" + weight + ", description=" + description
-				+ ", ingredients=" + ingredients + ", date=" + date + "]";
+				+ ", ingredients=" + ingredients + ", date=" + date + ", image=" + Arrays.toString(image) + "]";
 	}
 
 

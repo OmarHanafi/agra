@@ -17,17 +17,14 @@ _________________________________________________________ -->
                 <div class="panel-body">
 
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active">
-                            <a href="customer-orders.html"><i class="fa fa-list"></i> New product</a>
+                        <li [ngClass]="{'active' : isActive(0)}">
+                            <a (click)="toggleTab(0)"><i class="fa fa-list"></i> Product list</a>
+                        </li>
+                        <li [ngClass]="{'active' : isActive(1)}">
+                            <a (click)="toggleTab(1)"><i class="fa fa-plus-circle"></i> New product</a>
                         </li>
                         <li>
-                            <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                        </li>
-                        <li>
-                            <a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+                            <a routerLink="/logout"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -38,93 +35,11 @@ _________________________________________________________ -->
             <!-- *** CUSTOMER MENU END *** -->
         </div>
 
-        <div class="col-md-9">
-            <div class="box">
-                <h1>New product</h1>
-                
-                <form #addProductForm="ngForm" (ngSubmit)="addProduct(addProductForm.value)">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="designaiton">Designation</label>
-                                <input ngModel type="text" class="form-control" id="designation" name="designation">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select class="form-control" ngModel name="category" id="category">
-                                    <ng-container *ngFor="let category of allCategories">
-                                        <option value="{{category.id}}">{{category.name}}</option>
-                                    </ng-container>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input ngModel type="text" class="form-control" id="price" name="price">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="weight">Weight</label>
-                                <input ngModel type="text" class="form-control" id="weight" name="weight">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <label for="description">Description</label>
-                              <textarea ngModel id="description" name="description" class="form-control" rows="2"></textarea>
-                          </div>
-                      </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <label for="ingredients">Ingredients</label>
-                              <textarea ngModel id="ingredients" name="ingredients" class="form-control" rows="1"></textarea>
-                          </div>
-                      </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Image</label>
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-default btn-file">
-                                        Browse… <input  (change)="onFileSelected($event)" 
-                                                        id="image" name="image" type="file" id="imgInp">
-                                    </span>
-                                </span>
-                                <input type="text" class="form-control" readonly>
-                            </div>
-                            <img id='img-upload'/>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <ng-container [ngSwitch]="activeTab">
+            <adminlistproduct *ngSwitchCase="0" [allCategories]="allCategories" [productList]="productList" (loadProducts)="onLoadProducts($event)"></adminlistproduct>
+            <adminaddproduct *ngSwitchCase="1" [allCategories]="allCategories" (loadProducts)="onLoadProducts($event)"></adminaddproduct>
+        </ng-container>
+        
 
     </div>
     <!-- /.container -->

@@ -14,13 +14,4 @@ export class ClientNavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  redirect(categ : number){
-    console.log("choisis numero : "+categ);
-    this.router.navigate(["client/category",categ]);
-
-
-  }
-
-
 }

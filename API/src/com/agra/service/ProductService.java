@@ -12,4 +12,10 @@ public interface ProductService {
 	
 	public void addProduct(Product product);
 	
+	public List<Product> getProducts();
+	
+	public void updateProduct(Product product);
+	
+	public void deleteProduct(int id);
+	
 }
