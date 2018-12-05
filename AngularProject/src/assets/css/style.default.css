@@ -1694,6 +1694,9 @@ address {
   display: block;
 }
 
-#img-upload{
-  width: 100%;
+.img-upload{
+  max-width : 333px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }

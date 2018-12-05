@@ -4,7 +4,6 @@ function jsInit(){
     productDetailGallery(4000);
     carousels();
 	utils();
-	imageUpload();
 	setInterval(function() {
 		alignElementsSameHeight();
 	}, 150);
@@ -213,7 +212,7 @@ function imageUpload(){
 	});
 
 	$('.btn-file :file').on('fileselect', function(event, label) {
-		
+
 		var input = $(this).parents('.input-group').find(':text'),
 			log = label;
 		
@@ -229,14 +228,19 @@ function imageUpload(){
 			var reader = new FileReader();
 			
 			reader.onload = function (e) {
-				$('#img-upload').attr('src', e.target.result);
+				$('.img-upload').attr('src', e.target.result);
 			}
 			
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
-	$("#imgInp").change(function(){
+	$(".imgInp").change(function(){
 		readURL(this);
 	});
+}
+
+function resetImageUpload(){
+	$(".imagetext").val("");
+	$(".img-upload").attr('src',"");
 }

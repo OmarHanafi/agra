@@ -18,10 +18,10 @@ _________________________________________________________ -->
 
                     <ul class="nav nav-pills nav-stacked">
                         <li [ngClass]="{'active' : isActive(0)}">
-                            <a href="" onClick="return false;"><i class="fa fa-list"></i> Product list</a>
+                            <a (click)="toggleTab(0)"><i class="fa fa-list"></i> Product list</a>
                         </li>
                         <li [ngClass]="{'active' : isActive(1)}">
-                            <a href="" onClick="return false;"><i class="fa fa-plus-circle"></i> New product</a>
+                            <a (click)="toggleTab(1)"><i class="fa fa-plus-circle"></i> New product</a>
                         </li>
                         <li>
                             <a routerLink="/logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -36,8 +36,8 @@ _________________________________________________________ -->
         </div>
 
         <ng-container [ngSwitch]="activeTab">
-            <adminlistproduct *ngSwitchCase="0"></adminlistproduct>
-            <adminaddproduct *ngSwitchCase="1" [allCategories]="allCategories"></adminaddproduct>
+            <adminlistproduct *ngSwitchCase="0" [allCategories]="allCategories" [productList]="productList" (loadProducts)="onLoadProducts($event)"></adminlistproduct>
+            <adminaddproduct *ngSwitchCase="1" [allCategories]="allCategories" (loadProducts)="onLoadProducts($event)"></adminaddproduct>
         </ng-container>
         
 
