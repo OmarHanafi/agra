@@ -1,6 +1,6 @@
 import { CartItem} from './cartItem';
 
-export interface OrderDetail {
+export interface CartDetail {
     cartItems : CartItem[];
     totalPrice:number;
 }

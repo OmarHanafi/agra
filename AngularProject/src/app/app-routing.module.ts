@@ -10,6 +10,7 @@ import { AdminHomeComponent } from './admin/pages/adminhome/adminhome.component'
 import { AdminAuthGuard } from './admin/adminauth.guard';
 import { AdminProductComponent } from './admin/pages/adminproduct/adminproduct.component';
 import { ClientcartComponent } from './client/pages/clientcart/clientcart.component';
+import { ClientcheckoutComponent } from './client/pages/clientcheckout/clientcheckout.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path : "client/product/:id", component : ClientProductComponent,   canActivate : [ClientAuthGuard]},
   {path : "client/category/:id", component : ClientCategoryComponent, canActivate : [ClientAuthGuard]},
   {path : "client/cart", component : ClientcartComponent, canActivate : [ClientAuthGuard]},
+  {path : "client/checkout", component : ClientcheckoutComponent, canActivate : [ClientAuthGuard]},
 
   {path : "admin", component : AdminHomeComponent,                    canActivate : [AdminAuthGuard]},
   {path : "admin/product", component : AdminProductComponent,         canActivate : [AdminAuthGuard]}

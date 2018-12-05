@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
+import { CartDetail } from 'src/app/shared/interfaces/cartDetail';
 import { OrderService } from '../../order.service';
 
 
@@ -24,7 +24,7 @@ export class ClientNavbarComponent implements OnInit {
 
    
     load(){
-      let order = this.orderService.loadOrder();
+      let order = this.orderService.loadCart();
       this.nbItems=order.cartItems.length;
     }
 

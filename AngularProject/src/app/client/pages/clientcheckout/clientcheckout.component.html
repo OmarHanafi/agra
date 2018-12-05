@@ -1,0 +1,17 @@
+<clientnavbar></clientnavbar>
+<div id="all">
+  <div [ngSwitch]="checkoutState">
+
+    <div *ngSwitchCase="1">
+        <checkout1 (childEvent)="checkoutState=$event"></checkout1>
+    </div>
+    <div *ngSwitchCase="2">
+        <checkout2 (childEvent)="checkoutState=$event"></checkout2>
+    </div>
+    <div *ngSwitchCase="3">
+        <checkout3 (childEvent)="checkoutState=$event" ></checkout3>
+    </div>
+  </div>
+  <clientfooter></clientfooter>
+</div>
+<!-- /#all -->

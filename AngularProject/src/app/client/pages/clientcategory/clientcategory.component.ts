@@ -6,7 +6,7 @@ import { Product } from 'src/app/shared/interfaces/product';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CartItem } from 'src/app/shared/interfaces/cartItem';
-import { OrderDetail } from 'src/app/shared/interfaces/orderDetail';
+import { CartDetail } from 'src/app/shared/interfaces/cartDetail';
 import { OrderService } from '../../order.service';
 import { ClientNavbarComponent } from '../../components/clientnavbar/clientnavbar.component';
 
