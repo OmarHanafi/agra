@@ -65,7 +65,9 @@
                               <tr *ngFor="let item of order.cartItems" > <!-- boucle sur les produits dans le panier-->
                                 <td>
                                     <a routerLink="/client/product/{{item.product.id}}">
-                                        <img src="assets/img/kika-square.png" alt="White Blouse Armani">
+                                        
+                                            <img [src]="item.product.safeUrl" alt="aze" class="img-responsive">
+                                        
                                     </a>
                                 </td>
                                 <td>

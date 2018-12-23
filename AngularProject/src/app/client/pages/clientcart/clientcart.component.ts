@@ -46,8 +46,7 @@ export class ClientcartComponent implements OnInit {
     if(this.order.cartItems.length>0){
       this.checkout();
     }
-    //process the form 
-    //save in the session
+
     
   }
 

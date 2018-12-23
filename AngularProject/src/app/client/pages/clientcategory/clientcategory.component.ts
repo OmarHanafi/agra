@@ -49,7 +49,9 @@ export class ClientCategoryComponent implements OnInit {
     this.route.params.subscribe(val => {
         this.reset();
         this.categoryId = parseInt(this.route.snapshot.paramMap.get('id'));    // Getting the product's id
-
+        if(this.categoryId==4){
+          this.categoryId=3;
+        }
         this.mainService.getCategoryProducts(this.categoryId)
         .subscribe((data) => {
           this.products = this.mainService.sanitizeProducts(data);             // Getting the products

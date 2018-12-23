@@ -18,7 +18,6 @@ export class Checkout1Component implements OnInit {
 
 
   constructor(private orderService:OrderService) {
-    
     this.order= this.orderService.loadOrder();
     if(this.order.deliveryMethod==""){
       console.log("got it empty but not undefined")
@@ -27,14 +26,13 @@ export class Checkout1Component implements OnInit {
     else{
       this.delivery=this.order.deliveryMethod;
     }
-    
-
    }
-
    activate(){
      this.disableButton=false;
    }
 
+
+   
    ngOnInit() {
   }
 

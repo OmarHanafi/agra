@@ -28,7 +28,7 @@
   <div class="container">
       <div class="navbar-header">
 
-          <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+          <a class="navbar-brand home" routerLink="/client" data-animate-hover="bounce">
               <img src="assets/img/logoagra.png" style="width: 90px" 
               alt="Agra logo" class="hidden-xs">
               <img src="assets/img/logoagra-small.png" alt="Agra logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
@@ -55,13 +55,16 @@
                     <a routerLink="/client">Home</a>
                 </li>
                 <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client/category/1">Dried Fruits</a>
+                    <a routerLink="/client/category/1">TEXTURE ET STABILISATION</a>
                 </li>
                 <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client/category/2">Cakes</a>
+                    <a routerLink="/client/category/2">COULEUR ET BRILLANCE</a>
                 </li>
                 <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-                    <a routerLink="/client/category/3">Canned Vegetables</a>
+                    <a routerLink="/client/category/3">MARQUANTS ET INCLUSIONS</a>
+                </li>
+                <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+                    <a routerLink="/client/category/4">GOÛT ET NUTRITION</a>
                 </li>
             </ul>
       </div>
