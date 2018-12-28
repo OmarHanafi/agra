@@ -47,14 +47,8 @@ export class Checkout3Component implements OnInit {
     this.orderService.saveOrder(this.order);
   }
 
-
-
-
-
   //process
   onSubmit(form){
-
-
     let order =  this.orderService.loadOrder();
    
     
@@ -70,77 +64,29 @@ export class Checkout3Component implements OnInit {
     .post(this.apiLink+"/main/addOrder",lightOrder, httpOptions)
     .subscribe((data : boolean) => {
       if(data == true) 
-        alert('sent with success')
+        {
+          
+        }
       else {
-        alert("no no")
-      }
-    })
-    //process api ect ....
-    // alert("ok you'r done here !")
-
-
-    //testing body post
-
-
-   /**
-    * 
-    * 
-    * 
-    * 
-    * 
-    * 
-    
-    loginProcess(loginForm){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
-    };
-    this.httpClient
-    .post(this.apiLink+"loginProcess", loginForm.value, httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-    .subscribe((data : User) => {
-      if(data == null) 
-        this.loginError = true;
-      else {
-        sessionStorage.setItem("user",JSON.stringify(data));
-        this.redirect(data.type);
+        alert("Server error !")
       }
     })
   }
-    
-  
-  */
 
-
-
-  
-
-
-  }
-
-
-  
   convertOrderToLightORder(order:Order):LightOrder{
-
     let lightOrder:LightOrder={
       lightCart:{lightItems:Array(),totalPrice:order.cart.totalPrice},
       clientUsername:order.clientUsername,
       deliveryMethod:order.deliveryMethod,
       paymentMethod:order.paymentMethod
     };
-
     //pushing only produt's id instead of the whole product
     order.cart.cartItems.forEach(cartItem => {
       lightOrder.lightCart.lightItems.push({
           id:cartItem.product.id,
           quantity:cartItem.quantity})
     });
-
     return lightOrder;
-
   }
 
 

@@ -4,13 +4,37 @@ import { CartItem } from '../shared/interfaces/cartItem';
 import { Cart } from '../shared/interfaces/cart';
 import { Order } from '../shared/interfaces/order';
 import { User } from '../shared/interfaces/user';
-
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { CustomerOrder } from '../shared/interfaces/customerOrder';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  constructor() { }
+  apiLink = environment.apiLink;
+
+  
+
+  constructor(private httpClient : HttpClient) { }
+
+
+
+  getCustomerOrders():Observable<CustomerOrder[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    let user : User = <User> JSON.parse(sessionStorage.getItem("user"));
+    return this.httpClient
+    .post<CustomerOrder[]>(this.apiLink+"/main/orders",user, httpOptions)
+    
+    
+  }
+
+
 
 
 

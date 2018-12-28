@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -30,11 +32,11 @@ public class Order {
 	private int id;
 	
 	
-	
-	@OneToMany(mappedBy = "primaryKey.order",cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "primaryKey.order",cascade=CascadeType.ALL)
 	private List<OrderDetail> orderDetails; // list de produit/quantite
 	
-	
+	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name="client_id")
 	private Client client;
@@ -53,7 +55,21 @@ public class Order {
 	@Column(name="payment_method")
 	private String paymentMethod;
 
+	@Column(name="date")
+	private String date;
 	
+	
+	public String getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
 
 	public Order() {
 		super();
@@ -72,6 +88,21 @@ public class Order {
 		this.deliveryMethod = deliveryMethod;
 		this.paymentMethod = paymentMethod;
 	}
+
+	public Order(int id,  Client client, String state, float totalPrice,
+			String deliveryMethod, String paymentMethod, String date) {
+		super();
+		this.id = id;
+		this.orderDetails = new ArrayList<OrderDetail>();
+		this.client = client;
+		this.state = state;
+		this.totalPrice = totalPrice;
+		this.deliveryMethod = deliveryMethod;
+		this.paymentMethod = paymentMethod;
+		this.date = date;
+	}
+
+
 
 	//getters and setters
 	

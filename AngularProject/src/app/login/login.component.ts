@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     document.body.style.backgroundImage = "url('/assets/img/background.jpg')";
+    document.body.style.backgroundSize =  "100%"
+  
   }
 
   ngOnDestroy(){

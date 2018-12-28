@@ -1,5 +1,7 @@
 package com.agra.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,12 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order getOrder(int id) {
 		return orderDAO.getOrder(id);
+	}
+
+	@Transactional
+	@Override
+	public List<Order> getOrders(int id) {
+		return orderDAO.getOrders(id);
 	}
 
 }

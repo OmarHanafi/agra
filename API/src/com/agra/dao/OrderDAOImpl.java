@@ -1,5 +1,7 @@
 package com.agra.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,16 @@ public class OrderDAOImpl implements OrderDAO{
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		return (Order) currentSession.get(Order.class,id);
+	}
+
+	@Override
+	public List<Order> getOrders(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();		
+		List list = currentSession.createQuery("from Order o where o.client.id = :id")
+									 .setParameter("id", id)
+									 .getResultList();
+		
+		return list;
 	}
 
 }

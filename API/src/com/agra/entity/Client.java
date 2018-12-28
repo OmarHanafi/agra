@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity()
 @Table(name="client")
@@ -21,11 +23,13 @@ public class Client {
 	private int id;
 	
 	
+	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	
+	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name="affected_to")
 	private User affectedTo;

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity()
 @Table(name="user")
 public class User {
@@ -33,7 +35,7 @@ public class User {
 	@Column()
 	private int type;
 	
-	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "affectedTo", cascade = CascadeType.ALL)
 	private List<Client> clients;
 	
