@@ -1,8 +1,9 @@
-import { CartDetail } from "./cartDetail";
+import { Cart } from "./cart";
 
 
 export interface Order{
-    cartDetail:CartDetail,
+    cart:Cart,
+    clientUsername:String,
     deliveryMethod:String,
     paymentMethod:String
 }

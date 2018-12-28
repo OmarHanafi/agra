@@ -29,4 +29,11 @@ public class UserServiceImpl implements UserService {
 		return type;
 	}
 
+	@Transactional
+	@Override
+	public User getUser(String userName) {
+		return userDAO.getUser(userName);
+		
+	}
+
 }

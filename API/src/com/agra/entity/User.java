@@ -1,10 +1,16 @@
 package com.agra.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -26,6 +32,16 @@ public class User {
 	
 	@Column()
 	private int type;
+	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "affectedTo", cascade = CascadeType.ALL)
+	private List<Client> clients;
+	
+	
+	@OneToOne(mappedBy = "user")
+	private Client client;
+	
+	
 	
 	public User() {	}
 	
@@ -51,6 +67,22 @@ public class User {
 	}
 
 
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -70,9 +102,22 @@ public class User {
 		this.type = type;
 	}
 
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", type=" + type + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", type=" + type + "]";
 	}
+
+
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartDetail } from 'src/app/shared/interfaces/cartDetail';
+import { Cart } from 'src/app/shared/interfaces/cart';
 import { OrderService } from '../../order.service';
 
 

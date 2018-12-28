@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../shared/interfaces/product';
 import { CartItem } from '../shared/interfaces/cartItem';
-import { CartDetail } from '../shared/interfaces/cartDetail';
+import { Cart } from '../shared/interfaces/cart';
 import { Order } from '../shared/interfaces/order';
+import { User } from '../shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class OrderService {
   //after checkout create and save and order from the cart
   createOrder(){
     let cartDetail = this.loadCart();
-    let order:Order={cartDetail:cartDetail,
+
+    let user : User = <User> JSON.parse(sessionStorage.getItem("user"));
+    let order:Order={cart:cartDetail,
+      clientUsername:user.username,
       deliveryMethod:"",
       paymentMethod:""};
     this.saveOrder(order);
@@ -29,8 +33,11 @@ export class OrderService {
   }
 
   addPaymentToOrder(paymentMethod:String){
+
+    console.log("adding payment to the order ...")
     let order = this.loadOrder();
     order.paymentMethod=paymentMethod;
+    console.log(order)
     this.saveOrder(order);
   }
 
@@ -45,14 +52,14 @@ export class OrderService {
 
 
   //give an cart, ill store it in the session
-  saveCart(cart:CartDetail){
+  saveCart(cart:Cart){
     sessionStorage.setItem("cart",JSON.stringify(cart));
   }
 
   //check the session and return me the cart (if not there create one)
-  loadCart():CartDetail{
-    let cartDetail : CartDetail=null;
-    let cartInSession : CartDetail = <CartDetail> JSON.parse(sessionStorage.getItem("cart"));
+  loadCart():Cart{
+    let cartDetail : Cart=null;
+    let cartInSession : Cart = <Cart> JSON.parse(sessionStorage.getItem("cart"));
     if(cartInSession ==null ){
       let cartItems : CartItem[] =Array();
       cartDetail  ={cartItems:cartItems,totalPrice:0};
@@ -64,7 +71,7 @@ export class OrderService {
   }
 
   //give an cart, I calculate the total and return it :)
-  calculeTotalPrice(cart : CartDetail):void{
+  calculeTotalPrice(cart : Cart):void{
     if(cart==null){
       return;
     }
@@ -79,13 +86,13 @@ export class OrderService {
   //give an item, I ill add it to the cart then save
   addToCart(newProduct : Product){
     let newItem : CartItem = {product : newProduct,quantity : 1};
-    let cart : CartDetail = this.loadCart();
+    let cart : Cart = this.loadCart();
     this.addOrIncrement(cart,newItem);
     this.saveCart(cart);
   }
 
   //add if not existing, increment his quantity if exist
-  addOrIncrement(cart : CartDetail,cartItem : CartItem){
+  addOrIncrement(cart : Cart,cartItem : CartItem){
     let alreadyExist = false;
     for(let item of cart.cartItems){
       if(item.product.id==cartItem.product.id)

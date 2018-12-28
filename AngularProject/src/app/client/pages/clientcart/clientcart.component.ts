@@ -1,5 +1,5 @@
 import { Component, OnInit,EventEmitter ,OnChanges, SimpleChange, AfterContentInit, Output, ViewChild } from '@angular/core';
-import { CartDetail } from 'src/app/shared/interfaces/cartDetail';
+import { Cart } from 'src/app/shared/interfaces/cart';
 import { Product } from 'src/app/shared/interfaces/product';
 import { CartItem } from 'src/app/shared/interfaces/cartItem';
 import { OrderService } from '../../order.service';
@@ -25,7 +25,7 @@ export class ClientcartComponent implements OnInit {
 
 
   public nbItems:number=0;
-  private order : CartDetail;
+  private order : Cart;
   
 
   constructor(private orderService : OrderService,private router : Router) { 

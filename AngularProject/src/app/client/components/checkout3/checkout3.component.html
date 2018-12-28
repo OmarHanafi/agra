@@ -37,7 +37,7 @@
                                 </thead>
                                 <tbody>
                                     
-                                        <tr *ngFor="let item of order.cartDetail.cartItems" > <!-- boucle sur les produits dans l'order'-->
+                                        <tr *ngFor="let item of order.cart.cartItems" > <!-- boucle sur les produits dans l'order'-->
                                             <td>
                                                 <a routerLink="/client/product/{{item.product.id}}">
                                                     <img src="assets/img/kika-square.png" alt="White Blouse Armani">
@@ -73,7 +73,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th colspan="5">Total</th>
-                                                <th colspan="2">{{order.cartDetail.totalPrice}}</th>
+                                                <th colspan="2">{{order.cart.totalPrice}}</th>
                                             </tr>
                                         </tfoot>
                             </table>
@@ -113,7 +113,7 @@
                             <tbody>
                                     <tr>
                                         <td>Order subtotal</td>
-                                        <th>{{order.cartDetail.totalPrice}}</th>
+                                        <th>{{order.cart.totalPrice}}</th>
                                     </tr>
                                     <tr>
                                         <td>Shipping and handling</td>
@@ -125,7 +125,7 @@
                                     </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th>${{order.cartDetail.totalPrice}}</th>
+                                        <th>${{order.cart.totalPrice}}</th>
                                     </tr>
                                 </tbody>
                     </table>
